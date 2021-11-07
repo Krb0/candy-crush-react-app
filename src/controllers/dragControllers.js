@@ -38,35 +38,40 @@ export const dragEnd = (
       squareBeingDraggedId,
       squareBeingReplacedId
     );
-    const [isARowOfFour, isARowOfThree] = checkForRows(
-      swappedArray,
-      scoreResources
-    );
-    const [isAColumnOfFour, isAColumnOfThree] = checkForColumns(
-      width,
-      swappedArray,
-      scoreResources
-    );
-    if (
-      squareBeingReplacedId &&
-      isValid &&
-      [isARowOfThree, isARowOfFour, isAColumnOfFour, isAColumnOfThree].includes(
-        true
-      )
-    ) {
-      currentColorArray[squareBeingReplacedId] =
-        squareBeingDragged.getAttribute("src");
+    if (isValid) {
+      const [isARowOfFour, isARowOfThree] = checkForRows(
+        swappedArray,
+        scoreResources
+      );
+      const [isAColumnOfFour, isAColumnOfThree] = checkForColumns(
+        width,
+        swappedArray,
+        scoreResources
+      );
+      if (
+        squareBeingReplacedId &&
+        isValid &&
+        [
+          isARowOfThree,
+          isARowOfFour,
+          isAColumnOfFour,
+          isAColumnOfThree,
+        ].includes(true)
+      ) {
+        currentColorArray[squareBeingReplacedId] =
+          squareBeingDragged.getAttribute("src");
 
-      currentColorArray[squareBeingDraggedId] =
-        squareBeingReplaced.getAttribute("src");
-      setSquareBeingDragged(null);
-      setSquareBeingReplaced(null);
-    } else {
-      currentColorArray[squareBeingReplacedId] =
-        squareBeingReplaced.getAttribute("src");
-      currentColorArray[squareBeingDraggedId] =
-        squareBeingDragged.getAttribute("src");
-      setCurrentColorArray([...currentColorArray]);
+        currentColorArray[squareBeingDraggedId] =
+          squareBeingReplaced.getAttribute("src");
+        setSquareBeingDragged(null);
+        setSquareBeingReplaced(null);
+      } else {
+        currentColorArray[squareBeingReplacedId] =
+          squareBeingReplaced.getAttribute("src");
+        currentColorArray[squareBeingDraggedId] =
+          squareBeingDragged.getAttribute("src");
+        setCurrentColorArray([...currentColorArray]);
+      }
     }
   }
 };

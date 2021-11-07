@@ -3,9 +3,9 @@ const checkForRows = (currentColorArray, { score, setScore }) => {
   const isARowOfFour = checkForRowOfFour(currentColorArray);
   const isARowOfThree = checkForRowOfThree(currentColorArray);
   if (isARowOfFour) {
-    setScore(score + 5);
+    setScore(score + 15);
   } else if (isARowOfThree) {
-    setScore(score + 5);
+    setScore(score + 10);
   }
   return [isARowOfFour, isARowOfThree];
 };

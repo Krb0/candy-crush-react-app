@@ -6,7 +6,7 @@ const checkForColumns = (width, currentColorArray, { score, setScore }) => {
   if (isAColumnOfFour) {
     setScore(score + 15);
   } else if (isAColumnOfThree) {
-    setScore(score + 15);
+    setScore(score + 10);
   }
   return [isAColumnOfFour, isAColumnOfThree];
 };
