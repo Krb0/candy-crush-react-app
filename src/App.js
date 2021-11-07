@@ -4,6 +4,7 @@ import checkForRows from "./controllers/checkForRows";
 import GameBoard from "./components/GameBoard";
 import dropCandies from "./controllers/dropCandies";
 import ScoreBoard from "./components/ScoreBoard";
+import getScore from "./controllers/getScore";
 // Images import
 import BlueCandy from "./images/blue-candy.png";
 import RedCandy from "./images/red-candy.png";
@@ -26,7 +27,7 @@ const App = () => {
   const [currentColorArray, setCurrentColorArray] = useState([]);
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(getScore());
   const scoreResources = { score: score, setScore: setScore };
   const createBoard = () => {
     const randomColorArray = [];
@@ -40,6 +41,9 @@ const App = () => {
   useEffect(() => {
     createBoard();
   }, []);
+  useEffect(() => {
+    localStorage.setItem("score", JSON.stringify(score));
+  }, [score]);
   // Check for columns of three
   useEffect(() => {
     setTimeout(() => {}, 1000);
