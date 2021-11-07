@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import checkForColumns from "./controllers/checkForColumns";
 import checkForRows from "./controllers/checkForRows";
 import GameBoard from "./components/GameBoard";
@@ -28,7 +28,11 @@ const App = () => {
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [score, setScore] = useState(getScore());
-  const scoreResources = { score: score, setScore: setScore };
+
+  const scoreResources = useCallback(() => {
+    return { score: score, setScore: setScore };
+  }, [score]);
+
   const createBoard = () => {
     const randomColorArray = [];
     for (let i = 0; i < width ** 2; i++) {
@@ -48,8 +52,8 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {}, 1000);
     const timer = setInterval(() => {
-      checkForColumns(width, currentColorArray, scoreResources);
-      checkForRows(currentColorArray, scoreResources);
+      checkForColumns(width, currentColorArray, scoreResources());
+      checkForRows(currentColorArray, scoreResources());
       dropCandies(width, candyColors, currentColorArray);
       setCurrentColorArray([...currentColorArray]);
     }, 100);
@@ -65,7 +69,7 @@ const App = () => {
         squareBeingReplaced={squareBeingReplaced}
         currentColorArray={currentColorArray}
         setCurrentColorArray={setCurrentColorArray}
-        scoreResources={scoreResources}
+        scoreResources={scoreResources()}
         width={width}
       />
     </div>
