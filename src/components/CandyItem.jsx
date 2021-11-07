@@ -10,6 +10,7 @@ const CandyItem = ({
   squareBeingReplaced,
   setSquareBeingReplaced,
   setCurrentColorArray,
+  scoreResources
 }) => {
   return (
     <img
@@ -35,7 +36,8 @@ const CandyItem = ({
           width,
           setCurrentColorArray,
           setSquareBeingReplaced,
-          setSquareBeingDragged
+          setSquareBeingDragged,
+          scoreResources
         );
       }}
     />

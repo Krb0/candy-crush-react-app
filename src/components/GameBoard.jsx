@@ -7,6 +7,7 @@ const GameBoard = ({
   squareBeingDragged,
   squareBeingReplaced,
   width,
+  scoreResources
 }) => {
   const test = () => {
     console.log("hey");
@@ -24,6 +25,7 @@ const GameBoard = ({
           squareBeingDragged={squareBeingDragged}
           squareBeingReplaced={squareBeingReplaced}
           candyColor={candyColor}
+          scoreResources={scoreResources}
           index={index}
           onClick={test}
         />

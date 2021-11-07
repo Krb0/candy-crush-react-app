@@ -15,7 +15,8 @@ export const dragEnd = (
   width,
   setCurrentColorArray,
   setSquareBeingReplaced,
-  setSquareBeingDragged
+  setSquareBeingDragged,
+  scoreResources
 ) => {
   if (squareBeingReplaced) {
     const squareBeingDraggedId = parseInt(
@@ -37,10 +38,14 @@ export const dragEnd = (
       squareBeingDraggedId,
       squareBeingReplacedId
     );
-    const [isARowOfFour, isARowOfThree] = checkForRows(swappedArray);
+    const [isARowOfFour, isARowOfThree] = checkForRows(
+      swappedArray,
+      scoreResources
+    );
     const [isAColumnOfFour, isAColumnOfThree] = checkForColumns(
       width,
-      swappedArray
+      swappedArray,
+      scoreResources
     );
     if (
       squareBeingReplacedId &&

@@ -1,8 +1,12 @@
 import blank from "../images/blank.png";
-const checkForRows = (currentColorArray) => {
+const checkForRows = (currentColorArray, { score, setScore }) => {
   const isARowOfFour = checkForRowOfFour(currentColorArray);
   const isARowOfThree = checkForRowOfThree(currentColorArray);
-
+  if (isARowOfFour) {
+    setScore(score + 5);
+  } else if (isARowOfThree) {
+    setScore(score + 5);
+  }
   return [isARowOfFour, isARowOfThree];
 };
 

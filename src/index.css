@@ -6,10 +6,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #6e6969;
+  background-color: #979797;
 }
 .App {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 30px;
 }
 .game {
@@ -21,4 +23,7 @@ body {
 .game img {
   width: calc(560px / 8);
   height: calc(560px / 8);
+}
+.score {
+  font-size: 3rem;
 }

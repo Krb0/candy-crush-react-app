@@ -1,8 +1,14 @@
 import blank from "../images/blank.png";
-const checkForColumns = (width, currentColorArray) => {
+const checkForColumns = (width, currentColorArray, {score, setScore}) => {
   const isAColumnOfFour = checkForColumnsOfFour(width, currentColorArray);
   const isAColumnOfThree = checkForColumnsOfThree(width, currentColorArray);
 
+  if (isAColumnOfFour) { 
+    setScore(score+15)
+  }
+  else if (isAColumnOfThree) {
+    setScore(score + 15);
+  }
   return [isAColumnOfFour, isAColumnOfThree];
 };
 
