@@ -7,7 +7,7 @@ const GameBoard = ({
   squareBeingDragged,
   squareBeingReplaced,
   width,
-  scoreResources
+  scoreResources,
 }) => {
   const test = () => {
     console.log("hey");
