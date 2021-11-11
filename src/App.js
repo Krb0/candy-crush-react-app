@@ -1,78 +1,40 @@
-import { useState, useEffect, useCallback } from "react";
-import checkForColumns from "./controllers/checkForColumns";
-import checkForRows from "./controllers/checkForRows";
-import GameBoard from "./components/GameBoard";
-import dropCandies from "./controllers/dropCandies";
-import ScoreBoard from "./components/ScoreBoard";
-import getScore from "./controllers/getScore";
-// Images import
+import React, { useState, useRef, useEffect } from "react";
+import GameApp from "./GameApp";
+import Nav from "./components/Nav";
 import BlueCandy from "./images/blue-candy.png";
-import RedCandy from "./images/red-candy.png";
-import GreenCandy from "./images/green-candy.png";
-import YellowCandy from "./images/yellow-candy.png";
-import PurpleCandy from "./images/purple-candy.png";
-import OrangeCandy from "./images/orange-candy.png";
-
-const width = 8;
-const candyColors = [
-  BlueCandy,
-  GreenCandy,
-  OrangeCandy,
-  PurpleCandy,
-  RedCandy,
-  YellowCandy,
-];
-
+import getName from "./handlers/getName";
+import getAvatar from "./handlers/getAvatar";
 const App = () => {
-  const [currentColorArray, setCurrentColorArray] = useState([]);
-  const [squareBeingDragged, setSquareBeingDragged] = useState(null);
-  const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
-  const [score, setScore] = useState(getScore());
-
-  const scoreResources = useCallback(() => {
-    return { score: score, setScore: setScore };
-  }, [score]);
-
-  const createBoard = () => {
-    const randomColorArray = [];
-    for (let i = 0; i < width ** 2; i++) {
-      const randomColor =
-        candyColors[Math.floor(Math.random() * candyColors.length)];
-      randomColorArray.push(randomColor);
-    }
-    setCurrentColorArray(randomColorArray);
-  };
+  const [name, setName] = useState(getName);
+  const [avatar, setAvatar] = useState(getAvatar);
+  const nameInput = useRef();
+  const avatarInput = useRef();
   useEffect(() => {
-    createBoard();
-  }, []);
+    localStorage.setItem("nameCandy", name);
+  }, [name]);
   useEffect(() => {
-    localStorage.setItem("score", JSON.stringify(score));
-  }, [score]);
-  // Check for columns of three
-  useEffect(() => {
-    setTimeout(() => {}, 1000);
-    const timer = setInterval(() => {
-      checkForColumns(width, currentColorArray, scoreResources());
-      checkForRows(currentColorArray, scoreResources());
-      dropCandies(width, candyColors, currentColorArray);
-      setCurrentColorArray([...currentColorArray]);
-    }, 100);
-    return () => clearInterval(timer);
-  }, [currentColorArray, scoreResources]);
+    localStorage.setItem("avatarCandy", avatar);
+  }, [avatar]);
   return (
     <div className="App">
-      <ScoreBoard score={score} />
-      <GameBoard
-        setSquareBeingDragged={setSquareBeingDragged}
-        setSquareBeingReplaced={setSquareBeingReplaced}
-        squareBeingDragged={squareBeingDragged}
-        squareBeingReplaced={squareBeingReplaced}
-        currentColorArray={currentColorArray}
-        setCurrentColorArray={setCurrentColorArray}
-        scoreResources={scoreResources()}
-        width={width}
-      />
+      <Nav name={name} avatar={avatar} />
+      <GameApp></GameApp>
+      <input placeholder="Ingrese su nombre" ref={nameInput} />
+      <br />
+      <input placeholder="Ingrese su Avatar" ref={avatarInput} />
+      <br />
+      <button
+        onClick={() => {
+          const nameVal = nameInput.current.value;
+          const avatarVal = avatarInput.current.value;
+          setName(nameVal);
+          setAvatar(avatarVal);
+        }}
+      >
+        Save
+      </button>
     </div>
   );
 };
+
 export default App;

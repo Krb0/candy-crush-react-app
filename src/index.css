@@ -3,12 +3,16 @@ body {
 }
 #root {
   height: 100vh;
+  background-color: #979797;
+  overflow-x: hidden;
+}
+
+.game-app {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #979797;
 }
-.App {
+.game-container {
   display: flex;
   flex-direction: column;
   align-items: center;

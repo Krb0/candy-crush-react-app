@@ -1,4 +1,4 @@
-import { dragStart, dragEnd, dragDrop } from "../controllers/dragControllers";
+import { dragStart, dragEnd, dragDrop } from "../handlers/dragControllers";
 
 const CandyItem = ({
   candyColor,
