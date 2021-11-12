@@ -5,7 +5,6 @@ import GameBoard from "./components/GameBoard";
 import dropCandies from "./handlers/dropCandies";
 import ScoreBoard from "./components/ScoreBoard";
 import getScore from "./handlers/getScore";
-import Nav from "./components/Nav";
 // Images import
 import BlueCandy from "./images/blue-candy.png";
 import RedCandy from "./images/red-candy.png";

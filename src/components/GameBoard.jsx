@@ -1,4 +1,5 @@
 import Candy from "./CandyItem";
+import StyledGameBoard from "../styles/StyledGameBoard";
 const GameBoard = ({
   currentColorArray,
   setCurrentColorArray,
@@ -13,7 +14,7 @@ const GameBoard = ({
     console.log("hey");
   };
   return (
-    <div className="game">
+    <StyledGameBoard>
       {currentColorArray.map((candyColor, index) => (
         <Candy
           key={index}
@@ -30,7 +31,7 @@ const GameBoard = ({
           onClick={test}
         />
       ))}
-    </div>
+    </StyledGameBoard>
   );
 };
 export default GameBoard;

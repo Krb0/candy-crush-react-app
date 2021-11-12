@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import GameApp from "./GameApp";
 import Nav from "./components/Nav";
-import BlueCandy from "./images/blue-candy.png";
 import getName from "./handlers/getName";
 import getAvatar from "./handlers/getAvatar";
 const App = () => {

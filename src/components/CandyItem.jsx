@@ -1,5 +1,5 @@
 import { dragStart, dragEnd, dragDrop } from "../handlers/dragControllers";
-
+import StyledCandy from "../styles/StyledCandy";
 const CandyItem = ({
   candyColor,
   index,
@@ -10,10 +10,10 @@ const CandyItem = ({
   squareBeingReplaced,
   setSquareBeingReplaced,
   setCurrentColorArray,
-  scoreResources
+  scoreResources,
 }) => {
   return (
-    <img
+    <StyledCandy
       alt={candyColor}
       key={index}
       src={candyColor}
