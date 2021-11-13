@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import GameApp from "./GameApp";
 import Nav from "./components/Nav";
 import getName from "./handlers/getName";
 import getAvatar from "./handlers/getAvatar";
+import Account from "./components/Account";
 const App = () => {
   const [name, setName] = useState(getName);
   const [avatar, setAvatar] = useState(getAvatar);
-  const nameInput = useRef();
-  const avatarInput = useRef();
+  const [hidden, setHidden] = useState(false);
   useEffect(() => {
     localStorage.setItem("nameCandy", name);
   }, [name]);
@@ -16,22 +16,16 @@ const App = () => {
   }, [avatar]);
   return (
     <div className="App">
-      <Nav name={name} avatar={avatar} />
+      <Nav name={name} avatar={avatar} hidden={hidden} setHidden={setHidden} />
       <GameApp></GameApp>
-      <input placeholder="Ingrese su nombre" ref={nameInput} />
-      <br />
-      <input placeholder="Ingrese su Avatar" ref={avatarInput} />
-      <br />
-      <button
-        onClick={() => {
-          const nameVal = nameInput.current.value;
-          const avatarVal = avatarInput.current.value;
-          setName(nameVal);
-          setAvatar(avatarVal);
-        }}
-      >
-        Save
-      </button>
+      <div className={!hidden ? "hidden" : " "}>
+        <Account
+          name={name}
+          avatar={avatar}
+          setAvatar={setAvatar}
+          setName={setName}
+        />
+      </div>
     </div>
   );
 };

@@ -1,10 +1,15 @@
-import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import StyledNav from "../styles/StyledNav";
-const Nav = ({ avatar, name }) => {
+const Nav = ({ avatar, name, hidden, setHidden }) => {
   return (
     <StyledNav>
-      <img src={avatar} alt="avatar" />
-      <h2>{name}</h2>
+      <div className="user-div">
+        <img src={avatar} alt="avatar" />
+        <h2>{name}</h2>
+      </div>
+
+      <FontAwesomeIcon icon={faUser} onClick={() => setHidden(!hidden)} />
     </StyledNav>
   );
 };
