@@ -18,7 +18,10 @@ const App = () => {
     <div className="App">
       <Nav name={name} avatar={avatar} hidden={hidden} setHidden={setHidden} />
       <GameApp></GameApp>
-      <div className={!hidden ? "hidden" : " "}>
+      <div
+        className={!hidden ? "hidden" : "overlay"}
+        onClick={() => setHidden(!hidden)}
+      >
         <Account
           name={name}
           avatar={avatar}
